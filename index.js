@@ -1,14 +1,22 @@
-import express from 'express';
-import { createServer } from 'http';
+//.import express from 'express';
+const express = require('express');
 
 const app = express();
 
-const server = createServer(app);
+app.use(express.static('/public'));
+
+app.set('view-engine', 'ejs');
 
 app.get('/', (req,res) => {
-	res.write("Hello world!", 200);
+//	res.send("Hello world!", 200);
+	res.render('index');
 });
 
-server.listen(3000, () => {
+app.get("/dogs", (req,res) => {
+
+	res.send("Dogs",200);
+});
+
+app.listen(3000, () => {
 	console.log("server is listening");
 });
